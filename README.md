@@ -1,5 +1,16 @@
-# MyApp2
+Angular Reactive Form
 
+Validations:
+
+The full name input field must contain two names (letters only) separated by a space (both should start with a capital letter);
+
+The email input field must contain a valid email address;
+
+The phone number input field must contain a 9 digits number;
+
+The password input field must be between 3 and 16 symbols and must contain only letters and digits;
+
+Both passwords must match
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
 ## Development server
