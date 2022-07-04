@@ -1,0 +1,91 @@
+<div class="container">
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <fieldset>
+      <h1>Registration Form</h1>
+
+      <p class="field field-icon">
+        <label for="username"><span><i class="fas fa-user"></i></span></label>
+        <input type="text" name="username" id="username" placeholder="Mark Ulrich" formControlName="username">
+      </p>
+
+      <!-- if error -->
+      <p class="error" *ngIf="!registerForm.get('username')!.valid && registerForm.get('username')!.touched">
+        Please enter a valid full name
+      </p>
+      <!-- end if error -->
+
+      <p class="field field-icon">
+        <label for="email"><span><i class="fas fa-envelope"></i></span></label>
+        <input type="text" name="email" id="email" placeholder="marк@gmial.com" formControlName="email">
+      </p>
+
+      <p class="error" *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+        Please enter a valid email
+      </p>
+
+      <p class="field field-icon">
+        <label for="tel"><span><i class="fas fa-phone"></i></span></label>
+        <select name="tel" id="tel" class="tel" formControlName="prefix">
+          <option *ngFor="let prefix of prefixes" [value]="prefix">{{prefix}}</option>
+        </select>
+        <input type="text" name="tel" id="tel" placeholder="888 888" formControlName="tel">
+      </p>
+
+      <p class="error" *ngIf="!registerForm.get('tel')!.valid && registerForm.get('tel')!.touched">
+        Please enter a valid phone number
+      </p>
+
+      <p class="field field-icon">
+        <label for="building"><span><i class="fas fa-building"></i></span></label>
+        <select name="building" id="building" class="building" formControlName="building">
+          <option *ngFor="let building of buildings" [value]="building">{{building}}</option>
+        </select>
+      </p>
+
+      <div formGroupName="passData">
+        <p class="field field-icon">
+          <label for="password"><span><i class="fas fa-lock"></i></span></label>
+          <input type="password" name="password" id="password" placeholder="******" formControlName="password">
+        </p>
+
+        <p class="error" *ngIf="!registerForm.get('passData.password')!.valid && registerForm.get('passData.password')!.touched">
+          Please enter a valid password
+        </p>
+
+        <div>
+            Password: {{passwordOne}}
+        </div>
+
+        <p class="field field-icon">
+          <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
+          <input type="re-password" name="re-password" id="re-password" placeholder="******"
+            formControlName="re-password">
+        </p>
+
+        <p class="error" *ngIf="!registerForm.get('passData.re-password')!.valid && registerForm.get('passData.re-password')!.touched">
+          Please enter a valid repeat-password
+        </p>
+
+        <div>
+            Repeat-password: {{passwordTwo}}
+        </div>
+
+        <p class="error" *ngIf="registerForm.get('passData.re-password')!.touched && registerForm.get('passData.re-password')!.valid && registerForm.errors?.['passwordMissmatch']">
+            Passwords must match!
+        </p>
+      </div>
+
+      <p>
+        <button [disabled]="!registerForm.valid">Create Account</button>
+      </p>
+
+      <p class="text-center">
+        Have an account?
+        <a href="">Log In</a>
+      </p>
+
+    </fieldset>
+  </form>
+</div>
